@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="FlightSimulator.Views.AutoPilotView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulator.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="0,0,-0.4,26.8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" MinWidth="237.6"  />
+            <ColumnDefinition Width="auto" MinWidth="242.4"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" AcceptsReturn="True"
+                 Margin="0,0,-2.4,16.2" Height="325" VerticalAlignment="Bottom" 
+                 Name="textBox" Text="{Binding DataText, UpdateSourceTrigger=PropertyChanged}" />
+
+
+
+
+        <Button  Content="ok" Grid.Column="0" Grid.Row="1" Margin="145,0,0,0.4"
+                 RenderTransformOrigin="0.286,0.8" Width="54" Height="20"
+                 VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+                 Command="{Binding OkCommand}"/>
+        
+        <Button  Content="clear" Grid.Column="1"  Grid.Row="1" Margin="0,18.8,155.6,0.4" HorizontalAlignment="Right" Width="54" Height="19"   Click="Button_Clear" />
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="FlightSimulator.Views.FlightBoardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:control = "clr-namespace:FlightSimulator.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="0,0,0,39.6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition  Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--Button x:Name="Connect" Content="Connect" Grid.Column="0" Grid.Row="0" Margin="255,0,0,30.8" RenderTransformOrigin="0.286,0.8" Width="54" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+        <Button x:Name="Settings" Content="Settings" Grid.Column="1"  Grid.Row="0" Margin="25.8,51,-1.8,30.8" Height="19" HorizontalAlignment="Left" Width="48" Command="{Binding SettingsCommand}"/-->
+
+        <Button Padding="3" Margin="100,21,100.4,18.8" RenderTransformOrigin="-0.114,0.332" Command="{Binding ConnectCommand}">Connect</Button>
+        <Button Grid.Column="1" Padding="3" Margin="83.8,21,106,18.8" Command="{Binding SettingsCommand}">Settings</Button>
+
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="70,31.2,0,3.8">
+            <control:FlightBoard Margin="-60,0,10,-343"/>
+
+        </Grid>
+    </Grid>
+
+</UserControl>
+
+
+
+
