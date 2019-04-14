@@ -24,7 +24,7 @@
 
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="70,31.2,0,3.8">
-            <control:FlightBoard Margin="-60,0,10,-343"/>
+            <control:FlightBoard Margin="-55,-24,10,-34.4"/>
 
         </Grid>
     </Grid>
