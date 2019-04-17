@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -55,12 +56,16 @@ namespace FlightSimulator.Model
             nwStream.Write(byteToSend, 0, byteToSend.Length);
         }
 
-        public void start(string command)
+        public void start(string str)
         {
 
             //Thread t = (Thread)new Thread(delegate ()
             //{
-                write(command);
+            string[] allCommands = Regex.Split(str, "\r\n");
+            foreach (string command in allCommands)
+            {
+                write(string.Concat(command, "\r\n"));
+            }
             //});
             //t.Start();
             //t.Join();

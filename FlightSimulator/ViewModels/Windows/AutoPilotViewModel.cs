@@ -8,14 +8,30 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels
 {
+
+
+
     class AutoPilotViewModel
     {
 
         private string _dataText;
+        private string _background;
 
         public AutoPilotViewModel()
         {
             _dataText = "set controls/flight/rudder 1\r\n";
+        }
+
+        public string Background
+        {
+            get
+            {
+                return _background;
+            }
+            set
+            {
+                _background = value;
+            }
         }
 
         public string DataText
@@ -28,11 +44,16 @@ namespace FlightSimulator.ViewModels
             }
             set
             {
-                System.Console.WriteLine("_dataText set");
+                if (value != "")
+                {
+                    Background = "Pink";
+                }
+
                 _dataText = value;
             }
         }
-       
+
+        
         #region OkCommand
         private ICommand _okCommand;
         public ICommand OkCommand
@@ -48,6 +69,24 @@ namespace FlightSimulator.ViewModels
 
         }
         #endregion
+
+        #region clearCommand
+        private ICommand _clearCommand;
+        public ICommand ClearCommand
+        {
+            get
+            {
+                return _clearCommand ?? (_clearCommand = new CommandHandler(() => ClearClick()));
+            }
+        }
+        private void ClearClick()
+        {
+            
+            _dataText = "";
+        }
+        #endregion
+
+
 
     }
 

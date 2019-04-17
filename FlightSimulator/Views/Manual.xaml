@@ -40,10 +40,11 @@
 
 
         <TextBlock Text="&#x1f828; throttle &#x1f82a;"  FontWeight="Bold"  VerticalAlignment="Center" 
-                       Foreground="Black" Grid.Column="1" Grid.Row="2" >
+                       Foreground="Black" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="0,189,0,188.6" Width="72" >
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <RotateTransform Angle="-90"/>
+                        
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
