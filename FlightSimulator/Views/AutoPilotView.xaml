@@ -16,10 +16,9 @@
             <ColumnDefinition Width="auto" MinWidth="242.4"/>
         </Grid.ColumnDefinitions>
 
-        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" AcceptsReturn="True"
-                 Margin="0,0,-2.4,16.2" Height="325" VerticalAlignment="Bottom" 
-                 x:Name="textBox"  Background="{Binding Background, UpdateSourceTrigger=PropertyChanged}"
-                 Text="{Binding DataText, UpdateSourceTrigger=PropertyChanged}" />
+        <local:TextBoxCommand Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" AcceptsReturn="True"
+                 Margin="0,0,-2.4,16.2" Height="325" VerticalAlignment="Bottom" ChangedBackground="Pink"
+                 x:Name="Text" OriginalValue="" Text="{Binding DataText, UpdateSourceTrigger=PropertyChanged }"/>
 
 
 

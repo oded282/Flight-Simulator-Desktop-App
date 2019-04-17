@@ -35,7 +35,7 @@ namespace FlightSimulator.Views
         private void Button_Clear(object sender, RoutedEventArgs e)
         {
 
-            textBox.Text = "";
+            Text.Text = "";
         }
 
 

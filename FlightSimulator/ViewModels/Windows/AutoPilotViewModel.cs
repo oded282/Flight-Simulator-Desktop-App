@@ -19,19 +19,7 @@ namespace FlightSimulator.ViewModels
 
         public AutoPilotViewModel()
         {
-            _dataText = "set controls/flight/rudder 1\r\n";
-        }
-
-        public string Background
-        {
-            get
-            {
-                return _background;
-            }
-            set
-            {
-                _background = value;
-            }
+            // _dataText = "set controls/flight/rudder 1\r\n";
         }
 
         public string DataText
@@ -44,10 +32,6 @@ namespace FlightSimulator.ViewModels
             }
             set
             {
-                if (value != "")
-                {
-                    Background = "Pink";
-                }
 
                 _dataText = value;
             }
@@ -66,6 +50,8 @@ namespace FlightSimulator.ViewModels
         private void OkClick()
         {
             ApllicationClientModel.write(_dataText);
+
+            _dataText = "";
 
         }
         #endregion
