@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlightSimulator.ViewModels;
+using FlightSimulator.Views;
 
 namespace FlightSimulator.Views
 {
@@ -22,7 +24,7 @@ namespace FlightSimulator.Views
     public partial class AutoPilotView : UserControl
     {
         AutoPilotViewModel VM_AutoPilot;
-
+        private PropertyChangedEventArgs v;
 
         public AutoPilotView()
         {
@@ -31,13 +33,6 @@ namespace FlightSimulator.Views
             DataContext = VM_AutoPilot;
         }
 
-
-        private void Button_Clear(object sender, RoutedEventArgs e)
-        {
-
-            Text.Text = "";
-        }
-
-
+      
     }
 }

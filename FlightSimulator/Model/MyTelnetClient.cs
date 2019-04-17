@@ -65,6 +65,7 @@ namespace FlightSimulator.Model
             foreach (string command in allCommands)
             {
                 write(string.Concat(command, "\r\n"));
+                Thread.Sleep(2000);
             }
             //});
             //t.Start();

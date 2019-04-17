@@ -18,7 +18,7 @@
 
         <local:TextBoxCommand Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" AcceptsReturn="True"
                  Margin="0,0,-2.4,16.2" Height="325" VerticalAlignment="Bottom" ChangedBackground="Pink"
-                 x:Name="Text" OriginalValue="" Text="{Binding DataText, UpdateSourceTrigger=PropertyChanged }"/>
+                 x:Name="text" OriginalValue="" Text="{Binding DataText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"/>
 
 
 
@@ -29,7 +29,7 @@
                  Command="{Binding OkCommand}"/>
         
         <Button  Content="clear" Grid.Column="1"  Grid.Row="1" Margin="0,18.8,155.6,0.4" 
-                 HorizontalAlignment="Right" Width="54" Height="19"   Click="Button_Clear" 
+                 HorizontalAlignment="Right" Width="54" Height="19" 
                  Command="{Binding ClearCommand}"/>
 
     </Grid>

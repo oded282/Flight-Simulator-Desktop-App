@@ -11,11 +11,10 @@ namespace FlightSimulator.ViewModels
 
 
 
-    class AutoPilotViewModel
+    class AutoPilotViewModel : BaseNotify
     {
 
         private string _dataText;
-        private string _background;
 
         public AutoPilotViewModel()
         {
@@ -34,6 +33,8 @@ namespace FlightSimulator.ViewModels
             {
 
                 _dataText = value;
+
+                NotifyPropertyChanged(value);
             }
         }
 
@@ -51,7 +52,7 @@ namespace FlightSimulator.ViewModels
         {
             ApllicationClientModel.write(_dataText);
 
-            _dataText = "";
+            ClearClick();
 
         }
         #endregion
@@ -67,8 +68,8 @@ namespace FlightSimulator.ViewModels
         }
         private void ClearClick()
         {
-            
-            _dataText = "";
+
+            DataText = "";
         }
         #endregion
 
