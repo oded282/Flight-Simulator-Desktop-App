@@ -34,6 +34,7 @@ namespace FlightSimulator.Model
         {
             if (client == null) {
                 Console.WriteLine("Client not connected- can't disconnect");
+                return;
             }
             client.Close();
             client = null;

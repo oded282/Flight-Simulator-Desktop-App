@@ -10,7 +10,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="98*" />
+            <RowDefinition Height="99*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -24,74 +25,74 @@
 
         </Grid.ColumnDefinitions>
 
-        
-            <TextBlock Text="{Binding ElementName=sliderThrottle, Path=Value ,
+
+        <TextBlock Text="{Binding ElementName=sliderThrottle, Path=Value ,
                 StringFormat=N2}" Height="16" VerticalAlignment="Center"
                        Grid.Column="2" Grid.Row="1" >
-                <TextBlock.Foreground>
-                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-                </TextBlock.Foreground>
-            </TextBlock>
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
 
 
         <TextBlock Text="&#x1f828; aileron &#x1f82a;"  FontWeight="Bold"  HorizontalAlignment="Center"
-                       Foreground="Black" Grid.Column="3" Grid.Row="1"/>
+                       Foreground="Black" Grid.Column="3" Grid.Row="1" Margin="140,0"/>
 
 
 
-        <TextBlock Text="&#x1f828; throttle &#x1f82a;"  FontWeight="Bold"  VerticalAlignment="Center" 
-                       Foreground="Black" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="0,189,0,188.6" Width="72" >
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <RotateTransform Angle="-90"/>
-                        
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-        
+        <TextBlock Text="&#x1f828; throttle &#x1f82a;"  FontWeight="Bold"
+                       Foreground="Black" Grid.Column="1" Grid.Row="3" Margin="8,6,15.5,188.5" Grid.ColumnSpan="2" >
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="-90"/>
 
-        
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
 
-            <Slider x:Name="sliderThrottle"  Minimum="-1" Maximum="1" TickPlacement="BottomRight"
+
+
+
+        <Slider x:Name="sliderThrottle"  Minimum="-1" Maximum="1" TickPlacement="BottomRight"
                     TickFrequency="0.1"  Orientation="Vertical" 
-                      Grid.Row="2" Grid.Column="2"/>
+                      Grid.Row="2" Grid.Column="2" Margin="0,0,0,0.5" Grid.RowSpan="2"/>
 
-        
 
-        
-            <local:Joystick  HorizontalAlignment="Center" VerticalAlignment="Center"
-                            Grid.Column="3" Grid.Row="2" />
-       
 
-       
-            <TextBlock Text="elevator"  FontWeight="Bold"  VerticalAlignment="Center"
-                       Foreground="Black" Grid.Column="4" Grid.Row="2">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <RotateTransform Angle="-90"/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-       
 
-        
-            <Slider x:Name="sliderRudder" Minimum="-1" Maximum="1" TickPlacement="BottomRight" 
-                    TickFrequency="0.1" Grid.Column="3" Grid.Row="3" />
-       
+        <local:Joystick  HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Grid.Column="3" Grid.Row="2" Margin="4,27,4,27.5" Grid.RowSpan="2" />
 
-       
-            <TextBlock Text="{Binding ElementName=sliderRudder, Path=Value , StringFormat=N2}"
-                       VerticalAlignment="Top" Grid.Column="4" Grid.Row="3"  >
-                <TextBlock.Foreground>
-                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-                </TextBlock.Foreground>
-            </TextBlock>
+
+
+        <TextBlock Text="elevator"  FontWeight="Bold"  VerticalAlignment="Center"
+                       Foreground="Black" Grid.Column="4" Grid.Row="2" Margin="0,189,0,189.5" Grid.RowSpan="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="-90"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+
+
+
+        <Slider x:Name="sliderRudder" Minimum="-1" Maximum="1" TickPlacement="BottomRight" 
+                    TickFrequency="0.1" Grid.Column="3" Grid.Row="3" Margin="0,197.585,0,0.5" Grid.RowSpan="2" />
+
+
+
+        <TextBlock Text="{Binding ElementName=sliderRudder, Path=Value , StringFormat=N2}"
+                       VerticalAlignment="Top" Grid.Column="4" Grid.Row="3" Margin="0,197.585,0,0" Grid.RowSpan="2"  >
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
 
 
 
         <TextBlock Text="&#x1f828; rudder &#x1f82a;" FontWeight="Bold"  HorizontalAlignment="Center"
                        VerticalAlignment="Center" Foreground="Black"
-                      Grid.Column="3" Grid.Row="4" />
-       
+                      Grid.Column="3" Grid.Row="5" Margin="141,0.5,140,-0.5" />
+
     </Grid>
 </UserControl>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulator.ViewModels;
 //using FlightSimulator.Model;
 //using FlightSimulator.ViewModels;
 using Microsoft.Research.DynamicDataDisplay;
@@ -25,10 +26,15 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class FlightBoard : UserControl
     {
+        FlightBoardViewModel vm_flightBoard;
         ObservableDataSource<Point> planeLocations = null;
+
         public FlightBoard()
         {
             InitializeComponent();
+            vm_flightBoard = new FlightBoardViewModel();
+            DataContext = vm_flightBoard;
+            vm_flightBoard.PropertyChanged += Vm_PropertyChanged;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -44,11 +50,11 @@ namespace FlightSimulator.Views
         {
             if(e.PropertyName.Equals("Lat") || e.PropertyName.Equals("Lon"))
             {
-                Point p1 = new Point(0,0);            // Fill here!
+                Point p1 = new Point(0,);            // Fill here!
                 planeLocations.AppendAsync(Dispatcher, p1);
             }
         }
-
+       
     }
 
 }

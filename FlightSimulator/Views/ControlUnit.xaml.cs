@@ -25,7 +25,9 @@ namespace FlightSimulator.Views
             InitializeComponent();
         }
 
-       
+        private void Manual_Loaded(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

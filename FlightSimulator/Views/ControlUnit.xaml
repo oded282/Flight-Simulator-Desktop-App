@@ -11,7 +11,7 @@
 
     <TabControl Margin="0,0,0,-25.4">
         <TabItem Header="Manual">
-            <control:Manual/>
+            <control:Manual Loaded="Manual_Loaded"/>
         </TabItem>
 
         <TabItem Header="Auto Pilot">
