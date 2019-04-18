@@ -12,6 +12,8 @@ namespace FlightSimulator.ViewModels
     {
         private string _aileron;
         private string _elevator;
+        private string _throttle;
+        private string _rudder;
 
         public string VM_Aileron
         {
@@ -47,6 +49,40 @@ namespace FlightSimulator.ViewModels
             }
 
 
+        }
+        public string VM_Throttle
+        {
+            get
+            {
+
+                return _throttle;
+            }
+            set
+            {
+
+                _throttle = value;
+                ApllicationClientModel.write("set /controls/engines/current-engine/throttle " + value);
+
+
+            }
+
+        }
+
+        public string VM_Rudder
+        {
+            get
+            {
+                System.Console.WriteLine("_dataText get");
+
+                return _rudder;
+            }
+            set
+            {
+
+                _rudder = value;
+                ApllicationClientModel.write("set /controls/flight/rudder " + value);
+
+            }
         }
 
     }
