@@ -24,7 +24,7 @@ namespace FlightSimulator.ViewModels
         {
            
             get {
-                NotifyPropertyChanged("lon");
+                //NotifyPropertyChanged("lon");
                 return Convert.ToDouble(serverModel.M_lon); }
             
         }
@@ -32,7 +32,7 @@ namespace FlightSimulator.ViewModels
         public double Lat
         {
             get {
-                NotifyPropertyChanged("lat");
+               // NotifyPropertyChanged("lat");
                 return Convert.ToDouble(serverModel.M_lat); }
         }
 
@@ -40,10 +40,10 @@ namespace FlightSimulator.ViewModels
         private void m_PropertyChanged(object sender, PropertyChangedEventArgs e) {
             if (e.Equals("lat"))
             {
-                NotifyPropertyChanged("lat");
+                NotifyPropertyChanged("Lat");
             }
             else {
-                NotifyPropertyChanged("lon");
+                NotifyPropertyChanged("Lon");
             }
         }
 

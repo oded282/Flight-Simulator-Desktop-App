@@ -85,24 +85,58 @@ namespace FlightSimulator.Model
 
                 //---get the incoming data through a network stream---
                 NetworkStream nwStream = client.GetStream();
-                byte[] buffer = new byte[client.ReceiveBufferSize];
+                byte[] buffer = new byte[512];
 
            
                 Console.WriteLine("New Thread");
                 while (isConnected)
                 {
+                    int index = 0;
                     string str = "";
                     //---read incoming stream---
-                    int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize);
+                    int bytesRead = nwStream.Read(buffer, 0, 512);
 
                     //---convert the data received into a string---
                     string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-
-                    string[] allCommands = Regex.Split(dataReceived, ",");
-                    m_lon = allCommands[0];
-                    m_lat = allCommands[1];
+                    string[] dataBlock = Regex.Split(dataReceived, "\n");
                     
-                    Console.WriteLine("Received : " + dataReceived);
+
+                while (index < dataBlock.Length)
+                {
+                    string[] allCommands = Regex.Split(dataBlock[index], ",");
+                    allCommands = allCommands.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+
+                    //if (index + 1 == dataBlock.Length)
+                    //{
+                     //   allCommands[index].Remove((allCommands.Length - 1));
+                    //}
+                    
+
+                    // the remainder from the previous block data.
+                    if ((allCommands.Length < 24 && index == 0) || allCommands.Length == 0)
+                    {
+                        index++;
+                        continue;
+                    }
+                    // the first commands in block when lon is already sampled.
+                    else if (allCommands.Length == 24 && index == 0)
+                    {
+                        M_lat = allCommands[0];
+                    }
+                    // the last block whit len of 1.
+                    else if(allCommands.Length == 1)
+                    {
+                        M_lon = allCommands[0];
+                    }
+                    else 
+                    {
+                        M_lon = allCommands[0];
+                        M_lat = allCommands[1];
+                    }
+                    index++;
+                }
+
+              //      Thread.Sleep(100);
                 }
             //}).Start();
         }

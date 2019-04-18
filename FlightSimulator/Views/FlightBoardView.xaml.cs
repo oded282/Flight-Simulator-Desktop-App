@@ -26,8 +26,11 @@ namespace FlightSimulator.Views
         public FlightBoardView()
         {
             InitializeComponent();
+            //FlightBoard f = new FlightBoard();
             FlightBoardViewModel vm = new FlightBoardViewModel();
             DataContext = vm;
+            FlightBoard.setVM(vm);
+
         }
     }
 }

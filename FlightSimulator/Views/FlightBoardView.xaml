@@ -32,7 +32,7 @@
 
 
         <Grid Grid.Row="1" Grid.ColumnSpan="3" Margin="70,31.2,0,3.8">
-            <control:FlightBoard Margin="-55,-24,10,-34.4"/>
+            <control:FlightBoard x:Name="FlightBoard" Margin="-55,-24,10,-34.4"/>
 
         </Grid>
     </Grid>
