@@ -79,9 +79,9 @@ namespace FlightSimulator.ViewModels
         }
         private void _connectCommandClick()
         {
-            ApllicationClientModel.connect();
-            //serverModel.open();
-            //serverModel.start();
+            //ApllicationClientModel.connect();
+            serverModel.open();
+            serverModel.start();
         }
         #endregion
 
