@@ -18,11 +18,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Padding="3" Margin="3">Flight Server IP:</TextBlock>
-        <TextBox x:Name="txtMazeName" Grid.Column="2" Padding="3" Margin="3"></TextBox>
+        <TextBox x:Name="serverIP" Grid.Column="2" Padding="3" Margin="3" Text="{Binding ServerIp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"></TextBox>
         <TextBlock Grid.Row="1" Padding="3" Margin="3">Flight Server Port:</TextBlock>
-        <TextBox x:Name="txtRows" Grid.Row="1" Grid.Column="2" Padding="3" Margin="3"/>
+        <TextBox x:Name="serverPort" Text="{Binding ServerPort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Row="1" Grid.Column="2" Padding="3" Margin="3" />
         <TextBlock Grid.Row="2" Padding="3" Margin="3">Flight Command Port:</TextBlock>
-        <TextBox x:Name="txtCols" Grid.Row="2" Grid.Column="2" Padding="3" Margin="3"/>
+        <TextBox x:Name="infoPort" Text="{Binding InfoPort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Row="2" Grid.Column="2" Padding="3" Margin="3"/>
         <Button x:Name="Ok" Grid.Row="3"  Grid.Column="0" Command="{Binding ClickCommand}" Width="60" Margin="75,5,12,-4" >Ok</Button>
         <Button x:Name="Cancel" Grid.Row="3" Command="{Binding CancelCommand}"  Width="60" Grid.Column="1" Margin="5,5,130,-5">Cancel</Button>
     </Grid>

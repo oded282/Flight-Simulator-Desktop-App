@@ -9,6 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using FlightSimulator.Model.Interface;
 
+
+
 namespace FlightSimulator.Model
 {
     class ApllicationServerModel : ModelNotify, IServerModel
@@ -16,8 +18,8 @@ namespace FlightSimulator.Model
         TcpListener listener;
         TcpClient client;
         bool isConnected = true;
-        string m_lon = "-157";
-        string m_lat = "21";
+        string m_lon = "-157.943192";
+        string m_lat = "21.325247";
 
 
 
@@ -86,8 +88,8 @@ namespace FlightSimulator.Model
 
         public void start()
         {
-              //Thread t = new Thread(delegate ()
-              //  {
+              Thread t = new Thread(delegate ()
+              {
                 Console.WriteLine("Listening...");
             listener.Start();
 
@@ -100,7 +102,7 @@ namespace FlightSimulator.Model
             NetworkStream nwStream = client.GetStream();
                 byte[] buffer = new byte[512];
 
-            Thread.Sleep(10000);
+            //Thread.Sleep(10000);
                 Console.WriteLine("New Thread");
                 while (isConnected)
                 {
@@ -127,36 +129,39 @@ namespace FlightSimulator.Model
 
 
                     // the remainder from the previous block data.
-                        if ((allCommands.Length < 24 && index == 0) || allCommands.Length == 0 || allCommands[0] == "-")
-                        {
-                            index++;
-                            continue;
-                        }
+                    if ((allCommands.Length < 24 && index == 0) || allCommands.Length == 0 || allCommands[0] == "-")
+                    {
+                        index++;
+                        continue;
+                    }
                     // the first commands in block when lon is already sampled.
-                        else if (allCommands.Length == 24 && index == 0)
-                        {
-                            M_lat = allCommands[0];
-                        }
-                        // the last block whit len of 1.
-                        else if(allCommands.Length == 1)
-                        {
-                            M_lon = allCommands[0];
-                        }
-                        else 
-                        {
-                        Console.Write(allCommands[0]);
-                        Console.Write(allCommands[1]);
-
+                    else if (allCommands.Length == 24 && index == 0)
+                    {
+                        M_lat = allCommands[0];
+                    }
+                    // the last block whit len of 1.
+                    else if (allCommands.Length == 1)
+                    {
                         M_lon = allCommands[0];
-                        M_lat = allCommands[1];
+                    }
+                    else
+                    {
+                        if ((Convert.ToDouble(allCommands[0]) < Convert.ToDouble(m_lon) - 0.0025 || Convert.ToDouble(allCommands[0]) > Convert.ToDouble(m_lon) + 0.0025 ) &&
+                            (Convert.ToDouble(allCommands[1]) < Convert.ToDouble(m_lat) - 0.0025 || Convert.ToDouble(allCommands[1]) > Convert.ToDouble(m_lat) + 0.0025))
+                        {
+                           
+
+                            M_lon = allCommands[0];
+                            M_lat = allCommands[1];
                         }
+                    }
                         index++;
                     }
 
                     Thread.Sleep(100);
                 }
-           // });
-            //t.Start();
+            });
+            t.Start();
             //t.Join();
             
         }

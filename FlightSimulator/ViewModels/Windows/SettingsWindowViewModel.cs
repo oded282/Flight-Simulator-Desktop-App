@@ -13,7 +13,54 @@ namespace FlightSimulator.ViewModels.Windows
     public class SettingsWindowViewModel : BaseNotify
     {
         private ISettingsModel model;
-       
+        string serverIp = "127.0.0.1";
+        int serverPort = 5402;
+        int infoPort = 5400;
+
+        public string ServerIp
+        {
+            get
+            {
+
+
+                return serverIp;
+            }
+            set
+            {
+
+                serverIp = value;
+            }
+        }
+
+        public int ServerPort
+        {
+            get
+            {
+
+
+                return serverPort;
+            }
+            set
+            {
+
+                serverPort = value;
+            }
+        }
+
+        public int InfoPort
+        {
+            get
+            {
+
+
+                return infoPort;
+            }
+            set
+            {
+
+                infoPort = value;
+            }
+        }
 
         public SettingsWindowViewModel(ISettingsModel model)
         {
@@ -50,7 +97,7 @@ namespace FlightSimulator.ViewModels.Windows
             }
         }
 
-     
+
 
         public void SaveSettings()
         {
@@ -74,6 +121,9 @@ namespace FlightSimulator.ViewModels.Windows
         }
         private void OnClick()
         {
+            FlightServerIP = serverIp;
+            FlightCommandPort = serverPort;
+            FlightInfoPort = infoPort;
             model.SaveSettings();
         }
         #endregion
@@ -100,4 +150,3 @@ namespace FlightSimulator.ViewModels.Windows
         #endregion
     }
 }
-
