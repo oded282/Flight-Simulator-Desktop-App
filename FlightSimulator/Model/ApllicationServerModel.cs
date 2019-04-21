@@ -21,11 +21,10 @@ namespace FlightSimulator.Model
         bool isConnected = true;
         string m_lon = "0";
         string m_lat = "0";
-        double EPSILON = 0.002;
+        double EPSILON = 0.0025;
+        bool isFirstTime = true;
 
 
-
-       
         public string M_lon
         {
             get {
@@ -69,7 +68,6 @@ namespace FlightSimulator.Model
 
             IPAddress localAdd = IPAddress.Parse(settings.FlightServerIP);
             listener = new TcpListener(localAdd, settings.FlightInfoPort);
-
             
         }
 
@@ -108,13 +106,19 @@ namespace FlightSimulator.Model
                     string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                     string[] dataBlock = Regex.Split(dataReceived, "\n");
                     
+                    
 
                     while (index < dataBlock.Length)
                     {
                         string[] allCommands = Regex.Split(dataBlock[index], ",");
 
                         allCommands = allCommands.Where(val => val != "").ToArray();
-
+                        if (isFirstTime)
+                        {
+                            m_lon = allCommands[0];
+                            m_lat = allCommands[1];
+                            isFirstTime = false;
+                        }
 
                     // the remainder from the previous block data.
                     if ((allCommands.Length < 24 && index == 0) || allCommands.Length == 0 || allCommands[0] == "-")
