@@ -82,6 +82,7 @@ namespace FlightSimulator.ViewModels
             //ApllicationClientModel.connect();
             serverModel.open();
             serverModel.start();
+            
         }
         #endregion
 

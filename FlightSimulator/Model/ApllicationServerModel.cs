@@ -16,10 +16,22 @@ namespace FlightSimulator.Model
         TcpListener listener;
         TcpClient client;
         bool isConnected = true;
-        string m_lon = "0";
-        string m_lat = "0";
+        string m_lon = "-157";
+        string m_lat = "21";
 
 
+
+        //private void cleanEmtyCells(ref string[] array)
+        //{
+        //    int i = 0;
+        //    while(i < array.Length)
+        //    {
+        //        if (array[i] == "")
+        //        {
+        //            array = array.Where(val => val != "").ToArray();
+                
+        //    }
+        //}
         public string M_lon
         {
             get {
@@ -74,15 +86,15 @@ namespace FlightSimulator.Model
 
         public void start()
         {
-            //new Thread(delegate ()
-            //{
+             //Thread t = new Thread(delegate ()
+              //  {
                 Console.WriteLine("Listening...");
                 listener.Start();
 
                 //---incoming client connected---
                 TcpClient client = listener.AcceptTcpClient();
                 Console.WriteLine("Client accepted");
-
+               
                 //---get the incoming data through a network stream---
                 NetworkStream nwStream = client.GetStream();
                 byte[] buffer = new byte[512];
@@ -104,16 +116,16 @@ namespace FlightSimulator.Model
                 while (index < dataBlock.Length)
                 {
                     string[] allCommands = Regex.Split(dataBlock[index], ",");
-                    allCommands = allCommands.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+                    allCommands = allCommands.Where(val => val != "").ToArray();
 
                     //if (index + 1 == dataBlock.Length)
                     //{
-                     //   allCommands[index].Remove((allCommands.Length - 1));
+                    //   allCommands[index].Remove((allCommands.Length - 1));
                     //}
-                    
+
 
                     // the remainder from the previous block data.
-                    if ((allCommands.Length < 24 && index == 0) || allCommands.Length == 0)
+                    if ((allCommands.Length < 24 && index == 0) || allCommands.Length == 0 || allCommands[0] == "-")
                     {
                         index++;
                         continue;
@@ -130,15 +142,23 @@ namespace FlightSimulator.Model
                     }
                     else 
                     {
+                        if (m_lon != allCommands[0])
+                                {
+                                    Console.WriteLine("change");
+
+                                }
                         M_lon = allCommands[0];
                         M_lat = allCommands[1];
                     }
                     index++;
                 }
 
-              //      Thread.Sleep(100);
+                    Thread.Sleep(100);
                 }
-            //}).Start();
+           // });
+            //t.Start();
+            //t.Join();
+            
         }
 
     }
