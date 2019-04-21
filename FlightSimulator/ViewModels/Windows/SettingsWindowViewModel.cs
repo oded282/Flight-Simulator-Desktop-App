@@ -121,10 +121,11 @@ namespace FlightSimulator.ViewModels.Windows
         }
         private void OnClick()
         {
-            FlightServerIP = serverIp;
-            FlightCommandPort = serverPort;
-            FlightInfoPort = infoPort;
+           // FlightServerIP = serverIp;
+            //FlightCommandPort = serverPort;
+            //FlightInfoPort = infoPort;
             model.SaveSettings();
+            
         }
         #endregion
 

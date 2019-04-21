@@ -15,10 +15,12 @@ namespace FlightSimulator.ViewModels
     {
 
         ApllicationServerModel serverModel;
+        SettingWindow SettingsWin;
 
         public FlightBoardViewModel() {
             serverModel = new ApllicationServerModel();
             serverModel.PropertyChanged += m_PropertyChanged;
+            SettingsWin = new SettingWindow();
         }
         public double Lon
         {
@@ -61,8 +63,9 @@ namespace FlightSimulator.ViewModels
         }
         private void settingsClick()
         {
-            var SettingsWin = new SettingWindow();
+            
             SettingsWin.Show();
+            
         }
         #endregion
 
@@ -79,11 +82,11 @@ namespace FlightSimulator.ViewModels
         }
         private void _connectCommandClick()
         {
-            //ApllicationClientModel.connect();
+            
             ConsoleManager.Show();
             serverModel.open();
             serverModel.start();
-            
+            ApllicationClientModel.connect();
         }
         #endregion
 

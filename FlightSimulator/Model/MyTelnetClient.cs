@@ -22,6 +22,7 @@ namespace FlightSimulator.Model
                 int port = Properties.Settings.Default.FlightCommandPort;
                 client = new TcpClient();
                 client.Connect(ip, port);
+                Console.Write("connect sucssesfuly");
 
             }
             catch (Exception e)
@@ -59,18 +60,18 @@ namespace FlightSimulator.Model
 
         public void start(string str)
         {
-
-            //Thread t = (Thread)new Thread(delegate ()
-            //{
+            Console.Write("client");
+            Thread t = (Thread)new Thread(delegate ()
+            {
             string[] allCommands = Regex.Split(str, "\r\n");
             foreach (string command in allCommands)
             {
                 write(string.Concat(command, "\r\n"));
-                //hread.Sleep(2000);
+                Thread.Sleep(2000);
             }
-            //});
-            //t.Start();
-            //t.Join();
+            });
+            t.Start();
+            
         }
     }
 }

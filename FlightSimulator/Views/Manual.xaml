@@ -74,7 +74,7 @@
 
 
 
-        <Slider x:Name="sliderThrottle"  Minimum="-1" Maximum="1" TickPlacement="BottomRight"
+        <Slider x:Name="sliderThrottle"  Minimum="0" Maximum="1" TickPlacement="BottomRight"  Value="{Binding VM_Throttle}"
                     TickFrequency="0.1"  Orientation="Vertical" 
                       Grid.Row="2" Grid.Column="2"  RenderTransformOrigin="1,-0.174"/>
 
@@ -104,7 +104,7 @@
 
 
 
-        <Slider x:Name="sliderRudder" Minimum="-1" Maximum="1" TickPlacement="BottomRight" 
+        <Slider x:Name="sliderRudder" Minimum="-1" Maximum="1" TickPlacement="BottomRight" Value="{Binding VM_Rudder}"
                     TickFrequency="0.1" Grid.Column="3" Grid.Row="3"
                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 

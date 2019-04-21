@@ -13,27 +13,19 @@ using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Model
 {
+
     class ApllicationServerModel : ModelNotify, IServerModel
     {
         TcpListener listener;
         TcpClient client;
         bool isConnected = true;
-        string m_lon = "-157.943192";
-        string m_lat = "21.325247";
+        string m_lon = "0";
+        string m_lat = "0";
+        double EPSILON = 0.002;
 
 
 
-        //private void cleanEmtyCells(ref string[] array)
-        //{
-        //    int i = 0;
-        //    while(i < array.Length)
-        //    {
-        //        if (array[i] == "")
-        //        {
-        //            array = array.Where(val => val != "").ToArray();
-                
-        //    }
-        //}
+       
         public string M_lon
         {
             get {
@@ -88,21 +80,22 @@ namespace FlightSimulator.Model
 
         public void start()
         {
-              Thread t = new Thread(delegate ()
-              {
-                Console.WriteLine("Listening...");
+              
+            Console.WriteLine("Listening...");
             listener.Start();
 
                 //---incoming client connected---
-                TcpClient client = listener.AcceptTcpClient();
-                Console.WriteLine("Client accepted");
-            
+            TcpClient client = listener.AcceptTcpClient();
+            Console.WriteLine("Client accepted");
+
+            Thread t = new Thread(delegate ()
+              {
 
             //---get the incoming data through a network stream---
-            NetworkStream nwStream = client.GetStream();
+                NetworkStream nwStream = client.GetStream();
                 byte[] buffer = new byte[512];
 
-            //Thread.Sleep(10000);
+                Thread.Sleep(10000);
                 Console.WriteLine("New Thread");
                 while (isConnected)
                 {
@@ -121,11 +114,6 @@ namespace FlightSimulator.Model
                         string[] allCommands = Regex.Split(dataBlock[index], ",");
 
                         allCommands = allCommands.Where(val => val != "").ToArray();
-
-                    //if (index + 1 == dataBlock.Length)
-                    //{
-                    //   allCommands[index].Remove((allCommands.Length - 1));
-                    //}
 
 
                     // the remainder from the previous block data.
@@ -146,11 +134,10 @@ namespace FlightSimulator.Model
                     }
                     else
                     {
-                        if ((Convert.ToDouble(allCommands[0]) < Convert.ToDouble(m_lon) - 0.0025 || Convert.ToDouble(allCommands[0]) > Convert.ToDouble(m_lon) + 0.0025 ) &&
-                            (Convert.ToDouble(allCommands[1]) < Convert.ToDouble(m_lat) - 0.0025 || Convert.ToDouble(allCommands[1]) > Convert.ToDouble(m_lat) + 0.0025))
+                        if ((Convert.ToDouble(allCommands[0]) < Convert.ToDouble(m_lon) - EPSILON || Convert.ToDouble(allCommands[0]) > Convert.ToDouble(m_lon) + EPSILON) &&
+                            (Convert.ToDouble(allCommands[1]) < Convert.ToDouble(m_lat) - EPSILON || Convert.ToDouble(allCommands[1]) > Convert.ToDouble(m_lat) + EPSILON))
                         {
                            
-
                             M_lon = allCommands[0];
                             M_lat = allCommands[1];
                         }
@@ -162,7 +149,7 @@ namespace FlightSimulator.Model
                 }
             });
             t.Start();
-            //t.Join();
+            
             
         }
 
