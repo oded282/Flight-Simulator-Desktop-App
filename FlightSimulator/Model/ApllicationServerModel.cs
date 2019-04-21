@@ -86,20 +86,21 @@ namespace FlightSimulator.Model
 
         public void start()
         {
-             //Thread t = new Thread(delegate ()
+              //Thread t = new Thread(delegate ()
               //  {
                 Console.WriteLine("Listening...");
-                listener.Start();
+            listener.Start();
 
                 //---incoming client connected---
                 TcpClient client = listener.AcceptTcpClient();
                 Console.WriteLine("Client accepted");
-               
-                //---get the incoming data through a network stream---
-                NetworkStream nwStream = client.GetStream();
+            
+
+            //---get the incoming data through a network stream---
+            NetworkStream nwStream = client.GetStream();
                 byte[] buffer = new byte[512];
 
-           
+            Thread.Sleep(10000);
                 Console.WriteLine("New Thread");
                 while (isConnected)
                 {
@@ -113,10 +114,11 @@ namespace FlightSimulator.Model
                     string[] dataBlock = Regex.Split(dataReceived, "\n");
                     
 
-                while (index < dataBlock.Length)
-                {
-                    string[] allCommands = Regex.Split(dataBlock[index], ",");
-                    allCommands = allCommands.Where(val => val != "").ToArray();
+                    while (index < dataBlock.Length)
+                    {
+                        string[] allCommands = Regex.Split(dataBlock[index], ",");
+
+                        allCommands = allCommands.Where(val => val != "").ToArray();
 
                     //if (index + 1 == dataBlock.Length)
                     //{
@@ -125,33 +127,31 @@ namespace FlightSimulator.Model
 
 
                     // the remainder from the previous block data.
-                    if ((allCommands.Length < 24 && index == 0) || allCommands.Length == 0 || allCommands[0] == "-")
-                    {
-                        index++;
-                        continue;
-                    }
+                        if ((allCommands.Length < 24 && index == 0) || allCommands.Length == 0 || allCommands[0] == "-")
+                        {
+                            index++;
+                            continue;
+                        }
                     // the first commands in block when lon is already sampled.
-                    else if (allCommands.Length == 24 && index == 0)
-                    {
-                        M_lat = allCommands[0];
-                    }
-                    // the last block whit len of 1.
-                    else if(allCommands.Length == 1)
-                    {
-                        M_lon = allCommands[0];
-                    }
-                    else 
-                    {
-                        if (m_lon != allCommands[0])
-                                {
-                                    Console.WriteLine("change");
+                        else if (allCommands.Length == 24 && index == 0)
+                        {
+                            M_lat = allCommands[0];
+                        }
+                        // the last block whit len of 1.
+                        else if(allCommands.Length == 1)
+                        {
+                            M_lon = allCommands[0];
+                        }
+                        else 
+                        {
+                        Console.Write(allCommands[0]);
+                        Console.Write(allCommands[1]);
 
-                                }
                         M_lon = allCommands[0];
                         M_lat = allCommands[1];
+                        }
+                        index++;
                     }
-                    index++;
-                }
 
                     Thread.Sleep(100);
                 }

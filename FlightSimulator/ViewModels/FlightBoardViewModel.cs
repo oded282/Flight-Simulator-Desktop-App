@@ -80,6 +80,7 @@ namespace FlightSimulator.ViewModels
         private void _connectCommandClick()
         {
             //ApllicationClientModel.connect();
+            ConsoleManager.Show();
             serverModel.open();
             serverModel.start();
             
