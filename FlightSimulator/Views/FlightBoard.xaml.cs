@@ -14,16 +14,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlightSimulator.ViewModels;
-//using FlightSimulator.Model;
-//using FlightSimulator.ViewModels;
+
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 namespace FlightSimulator.Views
 {
-    /// <summary>
-    /// Interaction logic for MazeBoard.xaml
-    /// </summary>
+
     public partial class FlightBoard : UserControl
     {
         FlightBoardViewModel vm_flightBoard;
@@ -56,7 +53,7 @@ namespace FlightSimulator.Views
             {
                 Point p1 = new Point(vm_flightBoard.Lat, vm_flightBoard.Lon);            // Fill here!
                 Console.Write(p1.ToString());
-                //Console.Write(allCommands[1] + ",");
+                
                 planeLocations.AppendAsync(Dispatcher, p1);
             }
         }

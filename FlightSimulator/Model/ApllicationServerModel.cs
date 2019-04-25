@@ -16,8 +16,8 @@ namespace FlightSimulator.Model
 
     class ApllicationServerModel : ModelNotify, IServerModel
     {
-        TcpListener listener;
-        TcpClient client;
+        private TcpListener listener;
+        private TcpClient client;
         bool isConnected = true;
         string m_lon = "0";
         string m_lat = "0";
@@ -53,21 +53,25 @@ namespace FlightSimulator.Model
 
         public void close()
         {
-            if (client == null) {
+            if (this.client == null) {
                 Console.WriteLine("Server not connected - can't disconnect");
                 return;
             }
-            client.Close();
-            listener.Stop();
+            this.client.Close();
+            this.listener.Stop();
+            
             isConnected = false;
+            Console.WriteLine("Server disconnect");
+
         }
 
         public void open()
         {
+            isConnected = true;
             ISettingsModel settings = ApplicationSettingsModel.Instance;
 
             IPAddress localAdd = IPAddress.Parse(settings.FlightServerIP);
-            listener = new TcpListener(localAdd, settings.FlightInfoPort);
+            this.listener = new TcpListener(localAdd, settings.FlightInfoPort);
             
         }
 
@@ -80,17 +84,17 @@ namespace FlightSimulator.Model
         {
               
             Console.WriteLine("Listening...");
-            listener.Start();
+            this.listener.Start();
 
                 //---incoming client connected---
-            TcpClient client = listener.AcceptTcpClient();
+            this.client = listener.AcceptTcpClient();
             Console.WriteLine("Client accepted");
 
             Thread t = new Thread(delegate ()
               {
 
             //---get the incoming data through a network stream---
-                NetworkStream nwStream = client.GetStream();
+                NetworkStream nwStream = this.client.GetStream();
                 byte[] buffer = new byte[512];
 
                 Thread.Sleep(10000);
@@ -107,7 +111,6 @@ namespace FlightSimulator.Model
                     string[] dataBlock = Regex.Split(dataReceived, "\n");
                     
                     
-
                     while (index < dataBlock.Length)
                     {
                         string[] allCommands = Regex.Split(dataBlock[index], ",");

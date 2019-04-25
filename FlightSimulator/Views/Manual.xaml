@@ -25,7 +25,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="{Binding VM_Elevator, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource , StringFormat=N2}"  VerticalAlignment="Bottom"
-                       Grid.Column="4" Grid.Row="1" x:Name="textElevator"  HorizontalAlignment="Right" >
+                       Grid.Column="4" Grid.Row="1" x:Name="textElevator"  HorizontalAlignment="Right" Margin="0,0,37.5,0" >
             <TextBlock.Foreground>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
             </TextBlock.Foreground>
@@ -41,7 +41,7 @@
 
 
         <TextBlock Text="{Binding VM_Aileron, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource , StringFormat=N2}"  VerticalAlignment="Top" 
-                       Grid.Column="4" Grid.Row="1" x:Name="textAliron" HorizontalAlignment="Left"  RenderTransformOrigin="0.5,0.5">
+                       Grid.Column="4" Grid.Row="2" x:Name="textAliron" HorizontalAlignment="Left"  RenderTransformOrigin="0.5,0.5" Margin="21.25,5,0,0">
 
             <TextBlock.Foreground>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
@@ -76,7 +76,7 @@
 
         <Slider x:Name="sliderThrottle"  Minimum="0" Maximum="1" TickPlacement="BottomRight"  Value="{Binding VM_Throttle}"
                     TickFrequency="0.1"  Orientation="Vertical" 
-                      Grid.Row="2" Grid.Column="2"  RenderTransformOrigin="1,-0.174"/>
+                      Grid.Row="2" Grid.Column="2"  RenderTransformOrigin="1,-0.174" Grid.ColumnSpan="2" Margin="8.25,73,329.5,82"/>
 
 
 
@@ -90,8 +90,8 @@
 
 
 
-        <TextBlock Text="&#x1f828; elevator &#x1f82a;"  FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Right"
-                       Foreground="Black" Grid.Column="4" Grid.Row="2">
+        <TextBlock Text="&#x1f828; elevator &#x1f82a;"  FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Foreground="Black" Grid.Column="4" Grid.Row="2" Margin="18.25,166,-19.9,158">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -106,7 +106,7 @@
 
         <Slider x:Name="sliderRudder" Minimum="-1" Maximum="1" TickPlacement="BottomRight" Value="{Binding VM_Rudder}"
                     TickFrequency="0.1" Grid.Column="3" Grid.Row="3"
-                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="40.5,4,38.5,0" />
 
 
 
@@ -116,7 +116,6 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
             </TextBlock.Foreground>
         </TextBlock>
-
 
 
         <TextBlock Text="&#x1f828; rudder &#x1f82a;" FontWeight="Bold"
