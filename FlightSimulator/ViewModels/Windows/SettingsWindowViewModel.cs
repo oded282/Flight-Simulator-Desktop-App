@@ -17,50 +17,6 @@ namespace FlightSimulator.ViewModels.Windows
         int serverPort = 5402;
         int infoPort = 5400;
 
-        public string ServerIp
-        {
-            get
-            {
-
-
-                return serverIp;
-            }
-            set
-            {
-
-                serverIp = value;
-            }
-        }
-
-        public int ServerPort
-        {
-            get
-            {
-
-
-                return serverPort;
-            }
-            set
-            {
-
-                serverPort = value;
-            }
-        }
-
-        public int InfoPort
-        {
-            get
-            {
-
-
-                return infoPort;
-            }
-            set
-            {
-
-                infoPort = value;
-            }
-        }
 
         public SettingsWindowViewModel(ISettingsModel model)
         {
@@ -97,8 +53,6 @@ namespace FlightSimulator.ViewModels.Windows
             }
         }
 
-
-
         public void SaveSettings()
         {
             model.SaveSettings();
@@ -120,12 +74,8 @@ namespace FlightSimulator.ViewModels.Windows
             }
         }
         private void OnClick()
-        {
-           // FlightServerIP = serverIp;
-            //FlightCommandPort = serverPort;
-            //FlightInfoPort = infoPort;
-            model.SaveSettings();
-            
+        {         
+            model.SaveSettings();          
         }
         #endregion
 
@@ -136,16 +86,11 @@ namespace FlightSimulator.ViewModels.Windows
             get
             {
                 return _cancelCommand ?? (_cancelCommand = new CommandHandler(() => OnCancel()));
-            }
-            set
-            {
-                System.Console.WriteLine("set of CancelCommand");
-            }
+            } 
         }
         private void OnCancel()
         {
             model.ReloadSettings();
-
         }
         #endregion
         #endregion

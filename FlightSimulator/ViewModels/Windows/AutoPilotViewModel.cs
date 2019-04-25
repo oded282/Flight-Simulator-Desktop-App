@@ -9,31 +9,20 @@ using System.Windows.Input;
 namespace FlightSimulator.ViewModels
 {
 
-
-
     class AutoPilotViewModel : BaseNotify
     {
 
         private string _dataText;
 
-        public AutoPilotViewModel()
-        {
-            // _dataText = "set controls/flight/rudder 1\r\n";
-        }
-
         public string DataText
         {
             get
-            {
-                System.Console.WriteLine("_dataText get");
-
+            {             
                 return _dataText;
             }
             set
             {
-
                 _dataText = value;
-
                 NotifyPropertyChanged(value);
             }
         }
@@ -72,8 +61,6 @@ namespace FlightSimulator.ViewModels
             DataText = "";
         }
         #endregion
-
-
 
     }
 

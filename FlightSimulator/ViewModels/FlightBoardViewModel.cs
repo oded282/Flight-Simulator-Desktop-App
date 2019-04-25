@@ -20,11 +20,11 @@ namespace FlightSimulator.ViewModels
             serverModel = new ApllicationServerModel();
             serverModel.PropertyChanged += m_PropertyChanged;
         }
+
         public double Lon
         {
            
             get {
-                //NotifyPropertyChanged("lon");
                 return Convert.ToDouble(serverModel.M_lon); }
             
         }
@@ -32,7 +32,6 @@ namespace FlightSimulator.ViewModels
         public double Lat
         {
             get {
-               // NotifyPropertyChanged("lat");
                 return Convert.ToDouble(serverModel.M_lat); }
         }
 
@@ -70,7 +69,6 @@ namespace FlightSimulator.ViewModels
         
         #region ClickCommand
         private ICommand _connectCommand;
-        
         public ICommand ConnectCommand
         {
             get
@@ -78,10 +76,10 @@ namespace FlightSimulator.ViewModels
                 return _connectCommand ?? (_connectCommand = new CommandHandler(() => _connectCommandClick()));
             }
         }
+
         private void _connectCommandClick()
         {
             
-            ConsoleManager.Show();
             serverModel.open();
             serverModel.start();
             ApllicationClientModel.connect();
@@ -90,7 +88,6 @@ namespace FlightSimulator.ViewModels
 
         #region ClickCommand
         private ICommand _disconnectCommand;
-
         public ICommand DisconnectCommand
         {
             get
@@ -101,13 +98,10 @@ namespace FlightSimulator.ViewModels
         private void _disconnectCommandClick()
         {
             serverModel.close();
-            ApllicationClientModel.disconnect();
-            
+            ApllicationClientModel.disconnect();            
         }
         #endregion
-
     }
-
 }
 
 #endregion
