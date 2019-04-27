@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
 {
+    /*
+     * This model implement the telnetClient interface, in charge of the communication with the simulator. 
+     */
     class MyTelnetClient : ITelnetClient
     {
         TcpClient client;
@@ -22,7 +25,7 @@ namespace FlightSimulator.Model
                 int port = Properties.Settings.Default.FlightCommandPort;
                 client = new TcpClient();
                 client.Connect(ip, port);
-                Console.Write("connect sucssesfuly");
+                //Console.Write("connect sucssesfuly");
 
             }
             catch (Exception e)
@@ -34,7 +37,7 @@ namespace FlightSimulator.Model
         public void disconnect()
         {
             if (client == null) {
-                Console.WriteLine("Client not connected- can't disconnect");
+                //Console.WriteLine("Client not connected- can't disconnect");
                 return;
             }
             client.Close();
@@ -49,7 +52,7 @@ namespace FlightSimulator.Model
         public void write(string command)
         {
             if (client  == null) {
-                Console.WriteLine("Client not connected - can't write");
+                //Console.WriteLine("Client not connected - can't write");
                 return;
             }
             NetworkStream nwStream = client.GetStream();
@@ -60,7 +63,7 @@ namespace FlightSimulator.Model
 
         public void start(string str)
         {
-            Console.Write("client");
+            //Console.Write("client");
             Thread t = (Thread)new Thread(delegate ()
             {
             string[] allCommands = Regex.Split(str, "\r\n");
@@ -71,7 +74,6 @@ namespace FlightSimulator.Model
             }
             });
             t.Start();
-            
         }
     }
 }

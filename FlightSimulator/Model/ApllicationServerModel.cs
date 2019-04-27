@@ -141,6 +141,7 @@ namespace FlightSimulator.Model
                     }
                     else
                     {
+                              // Paint the plain route if the the lon/lat change is greater than some epsilon.
                         if ((Convert.ToDouble(allCommands[0]) < Convert.ToDouble(m_lon) - EPSILON || Convert.ToDouble(allCommands[0]) > Convert.ToDouble(m_lon) + EPSILON) &&
                             (Convert.ToDouble(allCommands[1]) < Convert.ToDouble(m_lat) - EPSILON || Convert.ToDouble(allCommands[1]) > Convert.ToDouble(m_lat) + EPSILON))
                         {

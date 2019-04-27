@@ -28,7 +28,7 @@ namespace FlightSimulator.ViewModels
             }
 
         }
-        // elevator of joystic proprty.
+        // elevator of joystic property.
         public string VM_Elevator
         {
             get
@@ -38,11 +38,11 @@ namespace FlightSimulator.ViewModels
             set
             {
                 _elevator = value;
-                // send commad to the flight simolator to change the elevator. 
+                // send commad to the flight simulator to change the elevator. 
                 ApllicationClientModel.write("set /controls/flight/elevator " + value);
             }
         }
-        // throttle of joystic proprty.
+        // throttle of joystic property.
         public string VM_Throttle
         {
             get
@@ -53,13 +53,13 @@ namespace FlightSimulator.ViewModels
             set
             {
                 _throttle = value;
-                // send commad to the flight simolator to change the throttle.
+                // send commad to the flight simulator to change the throttle.
                 ApllicationClientModel.write("set /controls/engines/current-engine/throttle " + value);
             
             }
 
         }
-        // rudder slider proprty.
+        // rudder slider property.
         public string VM_Rudder
         {
             get
@@ -69,7 +69,7 @@ namespace FlightSimulator.ViewModels
             set
             {
                 _rudder = value;
-                // send commad to the flight simolator to change the rudder.
+                // send commad to the flight simulator to change the rudder.
                 ApllicationClientModel.write("set /controls/flight/rudder " + value);
 
             }

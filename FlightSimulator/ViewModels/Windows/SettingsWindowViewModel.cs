@@ -10,6 +10,9 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels.Windows
 {
+    /*
+     * This vm  in charge of the the settings window in the mvvm architecture.
+     */ 
     public class SettingsWindowViewModel : BaseNotify
     {
         private ISettingsModel model;
@@ -53,16 +56,19 @@ namespace FlightSimulator.ViewModels.Windows
             }
         }
 
+        // This property saves the ip,port settings.
         public void SaveSettings()
         {
             model.SaveSettings();
         }
 
+        //This command reload the default settings.
         public void ReloadSettings()
         {
             model.ReloadSettings();
         }
 
+        // This command activated when ok button clicked.
         #region Commands
         #region ClickCommand
         private ICommand _clickCommand;
@@ -79,6 +85,7 @@ namespace FlightSimulator.ViewModels.Windows
         }
         #endregion
 
+        // This command activated when cancel button clicked.
         #region CancelCommand
         private ICommand _cancelCommand;
         public ICommand CancelCommand

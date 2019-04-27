@@ -9,6 +9,9 @@ using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Model
 {
+    /*
+     * This class responsible of communication with the server, by injecting the prefferd telnet client.
+     */
     public static class ApllicationClientModel
     {
          private static ITelnetClient telnetClient = new MyTelnetClient();
